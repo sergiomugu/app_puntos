@@ -1,0 +1,51 @@
+{
+  "name": "control-puntos-docentes-unrc",
+  "version": "2.3.1",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "next dev -H 127.0.0.1 -p 3000",
+    "build": "next build && node scripts/prepare-standalone.mjs",
+    "start": "node .next/standalone/server.js",
+    "db:migrate": "node scripts/migrate.mjs",
+    "db:bootstrap": "node scripts/bootstrap-admin.mjs",
+    "db:prepare": "npm run db:migrate && npm run db:bootstrap",
+    "security:secret": "node scripts/generar-secreto.mjs",
+    "verify:config": "node scripts/verificar-configuracion.mjs",
+    "verify:package": "node scripts/verificar-paquete.mjs",
+    "verify:release": "npm test && npm run lint && npm run build && npm run verify:package",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "lint": "eslint . --ignore-pattern .next"
+  },
+  "dependencies": {
+    "exceljs": "4.4.0",
+    "google-auth-library": "11.0.1",
+    "jszip": "^3.10.1",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
+    "next": "16.3.0",
+    "pg": "8.23.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/pg": "8.21.0",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.3.0",
+    "tailwindcss": "4.2.1",
+    "tsx": "^4.20.6",
+    "typescript": "5.9.3"
+  },
+  "overrides": {
+    "brace-expansion": "1.1.18",
+    "uuid": "11.1.1"
+  },
+  "type": "module",
+  "displayName": "Control de Puntos Docentes UNRC"
+}

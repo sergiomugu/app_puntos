@@ -1,0 +1,5 @@
+CONTROL DE PUNTOS DOCENTES UNRC
+Versión: 2.3.1 Institucional
+Base institucional exclusiva: 2.3.0
+Mejora: detección eficiente de cambios en Google Drive
+Intervalo predeterminado: 60 segundos

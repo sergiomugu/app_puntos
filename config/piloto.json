@@ -1,0 +1,12 @@
+{
+  "googleDrive": {
+    "folderId": "",
+    "intervaloSegundos": 60,
+    "tamanoMaximoMB": 10,
+    "soloLectura": true
+  },
+  "persistencia": {
+    "directorioPredeterminado": "data",
+    "conservarOriginales": true
+  }
+}

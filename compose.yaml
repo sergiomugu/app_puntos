@@ -1,0 +1,59 @@
+services:
+  postgres:
+    image: postgres:17-bookworm
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: control_puntos_docentes
+      POSTGRES_USER: controlpuntos
+      POSTGRES_PASSWORD: ${PUNTOS_POSTGRES_PASSWORD:?Defina PUNTOS_POSTGRES_PASSWORD en .env}
+      POSTGRES_INITDB_ARGS: "--data-checksums"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U controlpuntos -d control_puntos_docentes"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+
+  control-puntos-docentes:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      HOSTNAME: 0.0.0.0
+      PORT: 3000
+      TZ: America/Argentina/Buenos_Aires
+      DATABASE_URL: postgresql://controlpuntos:${PUNTOS_POSTGRES_PASSWORD}@postgres:5432/control_puntos_docentes
+      PUNTOS_DATA_DIR: /var/lib/control-puntos-docentes
+      GOOGLE_APPLICATION_CREDENTIALS: /run/secrets/google-drive-reader.json
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/salud').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - app_data:/var/lib/control-puntos-docentes
+      - ./secrets/google-drive-reader.json:/run/secrets/google-drive-reader.json:ro
+    read_only: true
+    init: true
+    stop_grace_period: 30s
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  postgres_data:
+  app_data:

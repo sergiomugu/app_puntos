@@ -1,0 +1,18 @@
+{
+  "sistema": {
+    "nombre": "Control de Puntos Docentes UNRC",
+    "institucion": "Universidad Nacional de Río Cuarto",
+    "secretaria": "Secretaría Económica",
+    "direccion": "Dirección General de Programación Financiera y Presupuestaria",
+    "version": "servidor-v2.3.1-institucional",
+    "baseFuncional": "servidor-v2.1.7"
+  },
+  "hojaExcel": "CUADRO",
+  "facultades": [
+    { "codigo": 1, "id": "ayv", "sigla": "AyV", "nombre": "Facultad de Agronomía y Veterinaria", "archivoSugerido": "PUFAV.xlsx", "color": "#318457", "identificadoresContenido": ["AGRONOMIA", "VETERINARIA"] },
+    { "codigo": 2, "id": "exa", "sigla": "EXA", "nombre": "Facultad de Ciencias Exactas Fco. Qcas. y Naturales", "archivoSugerido": "PUEXA.xlsx", "color": "#7652a6", "identificadoresContenido": ["EXACTAS"] },
+    { "codigo": 3, "id": "ing", "sigla": "ING", "nombre": "Facultad de Ingeniería", "archivoSugerido": "PUINGE.xlsx", "color": "#d56a18", "identificadoresContenido": ["INGENIERIA"] },
+    { "codigo": 4, "id": "eco", "sigla": "ECO", "nombre": "Facultad de Ciencias Económicas", "archivoSugerido": "PUECON.xlsx", "color": "#1775b8", "identificadoresContenido": ["ECONOMIC"] },
+    { "codigo": 5, "id": "hum", "sigla": "HUM", "nombre": "Facultad de Ciencias Humanas", "archivoSugerido": "PUHUM.xlsx", "color": "#b53a63", "identificadoresContenido": ["HUMAN"] }
+  ]
+}
